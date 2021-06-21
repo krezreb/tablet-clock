@@ -9,10 +9,10 @@ function preload() {
   myFont = loadFont('./JetBrainsMono-Bold.ttf');
 }
 
-let W = 900
+let W = 800
 
 function setup() {
-  h = 600
+  h = 700
   createCanvas(W, h*2.25);
   stroke(255);
 
@@ -26,7 +26,25 @@ function setup() {
   cy = height / 2;
   textFont(myFont);
 
+}
 
+function goFullscreen() {
+  // Get the element that we want to take into fullscreen mode
+  var element = document.getElementById("body");
+
+  // These function will not exist in the browsers that don't support fullscreen mode yet,
+  // so we'll have to check to see if they're available before calling them.
+
+  if (element.mozRequestFullScreen) {
+    // This is how to go into fullscren mode in Firefox
+    // Note the "moz" prefix, which is short for Mozilla.
+    element.mozRequestFullScreen();
+  } else if (element.webkitRequestFullScreen) {
+    // This is how to go into fullscreen mode in Chrome and Safari
+    // Both of those browsers are based on the Webkit project, hence the same prefix.
+    element.webkitRequestFullScreen();
+ }
+ // Hooray, now we're in fullscreen mode!
 }
 
 function dayStr(n){
@@ -184,7 +202,7 @@ function draw() {
 
   fill("#6c7194");
 
-  text(String(d.getHours()).padStart(2, '0')+":"+String(d.getMinutes()).padStart(2, '0'),W/2, 0);
+  text(String(d.getHours()).padStart(2, '0')+":"+String(d.getMinutes()).padStart(2, '0'),W/2, 200);
   //fill(20,20,20);
   today = dayStr(d.getDay())
   month = monthStr(d.getMonth())
@@ -196,7 +214,7 @@ function draw() {
   Mfr = month.split("|")[1].trim();
 
   fill("#d28aa0");
-  text(Den.toUpperCase()+" "+Men+" "+ordinal_suffix_of(d.getDate())+", "+ d.getFullYear(),W/2, 250);
-  text(Dfr.toUpperCase()+" "+d.getDate()+" "+Mfr+", "+ d.getFullYear(),W/2, 320);
+  text(Den.toUpperCase()+" "+Men+" "+ordinal_suffix_of(d.getDate())+", "+ d.getFullYear(),W/2, 60);
+  text(Dfr.toUpperCase()+" "+d.getDate()+" "+Mfr+", "+ d.getFullYear(),W/2, 120);
 
 }
