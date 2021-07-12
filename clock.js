@@ -12,18 +12,18 @@ function preload() {
 let W = 800
 
 function setup() {
-  h = 700
-  createCanvas(W, h*2.25);
+  h = W*1.8
+  createCanvas(W, h);
   stroke(255);
 
-  let radius = h / 2;
+  let radius = W / 2;
   secondsRadius = radius * 0.71;
   minutesRadius = radius * 0.6;
   hoursRadius = radius * 0.5;
   clockDiameter = radius * 1.7;
 
   cx = width / 2;
-  cy = height / 2;
+  cy = (height / 2)+160;
   textFont(myFont);
 
 }
@@ -193,7 +193,7 @@ function draw() {
   }
   endShape();
 
-  textSize(200);
+  textSize(250);
   var d = new Date();
 
   stroke(0);
@@ -202,7 +202,7 @@ function draw() {
 
   fill("#6c7194");
 
-  text(String(d.getHours()).padStart(2, '0')+":"+String(d.getMinutes()).padStart(2, '0'),W/2, 250);
+  text(String(d.getHours()).padStart(2, '0')+":"+String(d.getMinutes()).padStart(2, '0'),W/2, 220);
   //fill(20,20,20);
   today = dayStr(d.getDay())
   month = monthStr(d.getMonth())
@@ -214,8 +214,8 @@ function draw() {
   Mfr = month.split("|")[1].trim();
 
   fill("#d28aa0");
-  text(Den.toUpperCase()+" "+Men+" "+ordinal_suffix_of(d.getDate())+", "+ d.getFullYear(),W/2, 145);
-  text(Dfr.toUpperCase()+" "+d.getDate()+" "+Mfr+", "+ d.getFullYear(),W/2, 200);
+  text(Den.toUpperCase()+" "+Men+" "+ordinal_suffix_of(d.getDate())+", "+ d.getFullYear(),W/2, 75);
+  text(Dfr.toUpperCase()+" "+d.getDate()+" "+Mfr+", "+ d.getFullYear(),W/2, 150);
 
 }
 
