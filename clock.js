@@ -202,7 +202,7 @@ function draw() {
 
   fill("#6c7194");
 
-  text(String(d.getHours()).padStart(2, '0')+":"+String(d.getMinutes()).padStart(2, '0'),W/2, 200);
+  text(String(d.getHours()).padStart(2, '0')+":"+String(d.getMinutes()).padStart(2, '0'),W/2, 250);
   //fill(20,20,20);
   today = dayStr(d.getDay())
   month = monthStr(d.getMonth())
@@ -214,7 +214,20 @@ function draw() {
   Mfr = month.split("|")[1].trim();
 
   fill("#d28aa0");
-  text(Den.toUpperCase()+" "+Men+" "+ordinal_suffix_of(d.getDate())+", "+ d.getFullYear(),W/2, 60);
-  text(Dfr.toUpperCase()+" "+d.getDate()+" "+Mfr+", "+ d.getFullYear(),W/2, 120);
+  text(Den.toUpperCase()+" "+Men+" "+ordinal_suffix_of(d.getDate())+", "+ d.getFullYear(),W/2, 145);
+  text(Dfr.toUpperCase()+" "+d.getDate()+" "+Mfr+", "+ d.getFullYear(),W/2, 200);
+
+}
+
+function mouseDragged(event) {
+  location.reload(); 
+  // prevent default
+  return false;
+}
+
+
+function doubleClicked(event) {
+  goFullscreen('');
+  return false;
 
 }
