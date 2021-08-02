@@ -1,4 +1,6 @@
 dev: build
+	docker kill tablet-clock || true
+	docker rm tablet-clock || true
 	docker run --rm -p 90:90  -v $(shell pwd):/src  --name tablet-clock tablet-clock
 
 build:
