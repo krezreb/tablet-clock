@@ -9,21 +9,21 @@ function preload() {
   myFont = loadFont('./JetBrainsMono-Bold.ttf');
 }
 
-let W = 800
+let W = 900
 
 function setup() {
-  h = W*1.8
+  h = W*1.4
   createCanvas(W, h);
   stroke(255);
 
-  let radius = W / 2;
+  let radius = W / 2.2;
   secondsRadius = radius * 0.71;
   minutesRadius = radius * 0.6;
   hoursRadius = radius * 0.5;
   clockDiameter = radius * 1.7;
 
   cx = width / 2;
-  cy = (height / 2)+160;
+  cy = (height / 2)+200;
   textFont(myFont);
 
 }
@@ -202,7 +202,7 @@ function draw() {
 
   fill("#6c7194");
 
-  text(String(d.getHours()).padStart(2, '0')+":"+String(d.getMinutes()).padStart(2, '0'),W/2, 220);
+  text(String(d.getHours()).padStart(2, '0')+":"+String(d.getMinutes()).padStart(2, '0'),W/2, 180);
   //fill(20,20,20);
   today = dayStr(d.getDay())
   month = monthStr(d.getMonth())
