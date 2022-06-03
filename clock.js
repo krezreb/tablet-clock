@@ -25,7 +25,7 @@ function setup() {
   cx = width / 2;
   cy = (height / 2)+200;
   textFont(myFont);
-
+  setTimeout(location.reload, parseInt(Math.random()*10000000))
 }
 
 function goFullscreen() {
