@@ -5,6 +5,19 @@ let hoursRadius;
 let clockDiameter;
 let myFont;
 
+let clock_bg = "#F7AF9D"; 
+let clock_hands = "#2FF3E0";
+let digital_time = "#FA26A0";
+let fulldate = "#d28aa0"; 
+
+clock_bg = "#444";
+clock_accent = "#2FF3E0";
+clock_hands = "#F8D210" ;
+clock_hands_accent = "#000000";
+digital_time = "#FA26A0";
+fulldate = "#F8D210";
+let fulldate_accent = "#F51720"
+
 function preload() {
   myFont = loadFont('./JetBrainsMono-Bold.ttf');
 }
@@ -130,12 +143,53 @@ function ordinal_suffix_of(i) {
 }
 
 function draw() {
+
+
   clear();
+  stroke(0);
+  noStroke();
+  textAlign(CENTER, TOP);
+
+  var d = new Date();
+
+  today = dayStr(d.getDay())
+  month = monthStr(d.getMonth())
+  textSize(50);
+  Den = today.split("|")[0].trim();
+  Dfr = today.split("|")[1].trim();
+
+  Men = month.split("|")[0].trim();
+  Mfr = month.split("|")[1].trim();
+
+
+  fill(fulldate_accent);
+  // english date
+  text(Den.toUpperCase()+" "+Men+" "+ordinal_suffix_of(d.getDate())+", "+ d.getFullYear(),W/2, 95);
+  fill(fulldate);
+  text(Den.toUpperCase()+" "+Men+" "+ordinal_suffix_of(d.getDate())+", "+ d.getFullYear(),W/2-2, 95-2);
+  
+  // french date
+  fill(fulldate_accent);
+
+  text(Dfr.toUpperCase()+" "+d.getDate()+" "+Mfr+", "+ d.getFullYear(),W/2, 160);
+  fill(fulldate);
+
+  text(Dfr.toUpperCase()+" "+d.getDate()+" "+Mfr+", "+ d.getFullYear(),W/2-2, 160-2);
+
+
+  textSize(250);
+
+  fill("#EEEEEE");
+  text(String(d.getHours()).padStart(2, '0')+":"+String(d.getMinutes()).padStart(2, '0'),W/2, 220);
+  fill(digital_time);
+  text(String(d.getHours()).padStart(2, '0')+":"+String(d.getMinutes()).padStart(2, '0'),W/2+6, 220+6);
+  //fill(20,20,20);
+
   // Draw the clock background
   noStroke();
-  fill(90,90,90);
+  fill(clock_accent);
   ellipse(cx, cy, clockDiameter + 25, clockDiameter + 25);
-  fill("#644132");
+  fill(clock_bg);
   ellipse(cx, cy-10, clockDiameter, clockDiameter);
 
   // Angles for sin() and cos() start at 3 o'clock;
@@ -145,17 +199,32 @@ function draw() {
   let h = map(hour() + norm(minute(), 0, 60), 0, 24, 0, TWO_PI * 2) - HALF_PI;
 
   // Draw the hands of the clock
-  stroke(255);
-  stroke("#d28aa0");
-  strokeWeight(1);
-  line(cx, cy, cx + cos(s) * secondsRadius, cy + sin(s) * secondsRadius);
-  strokeWeight(4);
-  line(cx, cy, cx + cos(m) * minutesRadius, cy + sin(m) * minutesRadius);
-  strokeWeight(8);
+
+  // hour hand
+  strokeWeight(15);
+  stroke(clock_hands_accent);
   line(cx, cy, cx + cos(h) * hoursRadius, cy + sin(h) * hoursRadius);
+  stroke(clock_hands);
+  line(cx-5, cy-5, cx -5 + cos(h) * hoursRadius, cy -5  + sin(h) * hoursRadius);
+
+  // seconds hand
+  stroke(255);
+  stroke(clock_hands_accent);
+  strokeWeight(2);
+  line(cx, cy, cx + cos(s) * secondsRadius, cy + sin(s) * secondsRadius);
+  stroke(clock_hands);
+  line(cx+2, cy+2, cx+2 + cos(s) * secondsRadius, cy+2 + sin(s) * secondsRadius);
+  
+  // minute
+  stroke(clock_hands_accent);
+  strokeWeight(7);  
+  line(cx, cy, cx + cos(m) * minutesRadius, cy + sin(m) * minutesRadius);
+  stroke(clock_hands);
+  line(cx-4, cy-4, cx -4 + cos(m) * minutesRadius, cy -4 + sin(m) * minutesRadius);
+
+  
 
   stroke(200);
-
   // Draw the minute ticks
   strokeWeight(1);
   beginShape(POINTS);
@@ -193,30 +262,7 @@ function draw() {
   }
   endShape();
 
-  textSize(250);
-  var d = new Date();
-
-  stroke(0);
-  noStroke();
-  textAlign(CENTER, TOP);
-
-  fill("#6c7194");
-
-  text(String(d.getHours()).padStart(2, '0')+":"+String(d.getMinutes()).padStart(2, '0'),W/2, 220);
-  //fill(20,20,20);
-  today = dayStr(d.getDay())
-  month = monthStr(d.getMonth())
-  textSize(50);
-  Den = today.split("|")[0].trim();
-  Dfr = today.split("|")[1].trim();
-
-  Men = month.split("|")[0].trim();
-  Mfr = month.split("|")[1].trim();
-
-  fill("#d28aa0");
-  text(Den.toUpperCase()+" "+Men+" "+ordinal_suffix_of(d.getDate())+", "+ d.getFullYear(),W/2, 95);
-  text(Dfr.toUpperCase()+" "+d.getDate()+" "+Mfr+", "+ d.getFullYear(),W/2, 160);
-
+ 
 }
 
 function mouseDragged(event) {
