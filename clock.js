@@ -15,15 +15,15 @@ function setup() {
   h = W*1.7
   createCanvas(W, h);
   stroke(255);
-
-  let radius = W / 1.7;
+  frameRate(2); 
+  let radius = W / 2;
   secondsRadius = radius * 0.71;
   minutesRadius = radius * 0.6;
   hoursRadius = radius * 0.5;
   clockDiameter = radius * 1.7;
 
   cx = width / 2;
-  cy = (height / 2)+240;
+  cy = (height / 2)+160;
   textFont(myFont);
   setTimeout(location.reload, parseInt(Math.random()*10000000))
 }
@@ -170,7 +170,7 @@ function draw() {
   // Draw the 3hr ticks
   stroke(122);
 
-  strokeWeight(20);
+  strokeWeight(40);
   beginShape(POINTS);
   for (let a = 0; a < 360; a += 90) {
     let angle = radians(a);
@@ -183,7 +183,7 @@ function draw() {
 
   stroke(255);
   // Draw the hours ticks
-  strokeWeight(8);
+  strokeWeight(16);
   beginShape(POINTS);
   for (let a = 0; a < 360; a += 30) {
     let angle = radians(a);
@@ -202,7 +202,7 @@ function draw() {
 
   fill("#6c7194");
 
-  text(String(d.getHours()).padStart(2, '0')+":"+String(d.getMinutes()).padStart(2, '0'),W/2, 190);
+  text(String(d.getHours()).padStart(2, '0')+":"+String(d.getMinutes()).padStart(2, '0'),W/2, 220);
   //fill(20,20,20);
   today = dayStr(d.getDay())
   month = monthStr(d.getMonth())
@@ -214,8 +214,8 @@ function draw() {
   Mfr = month.split("|")[1].trim();
 
   fill("#d28aa0");
-  text(Den.toUpperCase()+" "+Men+" "+ordinal_suffix_of(d.getDate())+", "+ d.getFullYear(),W/2, 55);
-  text(Dfr.toUpperCase()+" "+d.getDate()+" "+Mfr+", "+ d.getFullYear(),W/2, 130);
+  text(Den.toUpperCase()+" "+Men+" "+ordinal_suffix_of(d.getDate())+", "+ d.getFullYear(),W/2, 95);
+  text(Dfr.toUpperCase()+" "+d.getDate()+" "+Mfr+", "+ d.getFullYear(),W/2, 160);
 
 }
 
