@@ -12,18 +12,18 @@ function preload() {
 let W = 900
 
 function setup() {
-  h = W*1.4
+  h = W*1.7
   createCanvas(W, h);
   stroke(255);
 
-  let radius = W / 2.2;
+  let radius = W / 1.7;
   secondsRadius = radius * 0.71;
   minutesRadius = radius * 0.6;
   hoursRadius = radius * 0.5;
   clockDiameter = radius * 1.7;
 
   cx = width / 2;
-  cy = (height / 2)+200;
+  cy = (height / 2)+240;
   textFont(myFont);
   setTimeout(location.reload, parseInt(Math.random()*10000000))
 }
@@ -136,7 +136,7 @@ function draw() {
   fill(90,90,90);
   ellipse(cx, cy, clockDiameter + 25, clockDiameter + 25);
   fill("#644132");
-  ellipse(cx, cy, clockDiameter, clockDiameter);
+  ellipse(cx, cy-10, clockDiameter, clockDiameter);
 
   // Angles for sin() and cos() start at 3 o'clock;
   // subtract HALF_PI to make them start at the top
@@ -202,7 +202,7 @@ function draw() {
 
   fill("#6c7194");
 
-  text(String(d.getHours()).padStart(2, '0')+":"+String(d.getMinutes()).padStart(2, '0'),W/2, 180);
+  text(String(d.getHours()).padStart(2, '0')+":"+String(d.getMinutes()).padStart(2, '0'),W/2, 190);
   //fill(20,20,20);
   today = dayStr(d.getDay())
   month = monthStr(d.getMonth())
@@ -214,8 +214,8 @@ function draw() {
   Mfr = month.split("|")[1].trim();
 
   fill("#d28aa0");
-  text(Den.toUpperCase()+" "+Men+" "+ordinal_suffix_of(d.getDate())+", "+ d.getFullYear(),W/2, 75);
-  text(Dfr.toUpperCase()+" "+d.getDate()+" "+Mfr+", "+ d.getFullYear(),W/2, 150);
+  text(Den.toUpperCase()+" "+Men+" "+ordinal_suffix_of(d.getDate())+", "+ d.getFullYear(),W/2, 55);
+  text(Dfr.toUpperCase()+" "+d.getDate()+" "+Mfr+", "+ d.getFullYear(),W/2, 130);
 
 }
 
