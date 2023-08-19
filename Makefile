@@ -11,7 +11,6 @@ dev_shell:
 
 install:
 	rsync -arvD * $(SSH_TARGET):~/tablet-clock
-	ssh $(SSH_TARGET) bash -c "'cd tablet-clock && docker build . -t tablet-clock'"
-	ssh $(SSH_TARGET) bash -c "'docker kill tablet-clock || true'"
-	ssh $(SSH_TARGET) bash -c "'docker rm tablet-clock || true'"
-	ssh $(SSH_TARGET) docker run -d -p 90:90 --restart always --name tablet-clock tablet-clock
+	ssh $(SSH_TARGET) bash -c "'cd tablet-clock && docker-compose build'"
+	ssh $(SSH_TARGET) bash -c "'cd tablet-clock && docker-compose down'"
+	ssh $(SSH_TARGET) bash -c "'cd tablet-clock && docker-compose up -d'"
