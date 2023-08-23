@@ -3,21 +3,5 @@ version : '3.0'
 services:
     nginx:
         build: .
-        expose:
-            - "80"
-    reverse_proxy:
-        image: jbeeson/letsencrypt-reverseproxy
         ports:
-            - "8090:80"
-            - "4439:443"
-        environment:
-            - ACME_CERT_PORT=8090
-            - CERT_EMAIL=info@jumidev.com 
-            - CERT_FQDN=clock.jumidev.com 
-            - PROXY_PASS_TARGET=http://nginx 
-
-        volumes:
-            - cert:/ssl
-    
-volumes:
-    cert:
+            - "8097:80"
